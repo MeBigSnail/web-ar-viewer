@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vizualizare produs</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    main {
+      padding: 40px 20px;
+    }
+
+    model-viewer {
+      width: 100%;
+      max-width: 600px;
+      height: 500px;
+      margin: auto;
+    }
+
+    .controls {
+      margin-top: 20px;
+    }
+
+    .back-button {
+      margin-top: 40px;
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #2e3a59;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .back-button:hover {
+      background-color: #44527a;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Vizualizare produs în AR</h1>
+  </header>
+
+  <main>
+    <model-viewer id="viewer"
+      src=""
+      ar
+      ar-modes="scene-viewer quick-look webxr"
+      camera-controls
+      auto-rotate
+      alt="Model 3D de mobilier"
+    ></model-viewer>
+
+    <div class="controls">
+      <!-- Exemplu: selector culoare viitor -->
+    </div>
+
+    <a href="index.html" class="back-button">Înapoi la Catalog</a>
+  </main>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const modelName = urlParams.get('model');
+
+    const viewer = document.getElementById('viewer');
+    viewer.src = `models/${modelName}`;
+  </script>
+</body>
+</html>
