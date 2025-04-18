@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profilul meu</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Bara de sus -->
+  <header class="top-bar">
+    <button class="icon-btn" onclick="openMenu()">☰</button>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Caută produse..." />
+    </div>
+    <button class="icon-btn">👤</button>
+  </header>
+
+  <!-- Meniul lateral -->
+  <div id="sideMenu" class="side-menu">
+    <button class="close-btn" onclick="closeMenu()">×</button>
+    <a href="#">Acasă</a>
+    <a href="#">Produse</a>
+    <a href="#">Despre Noi</a>
+    <a href="#">Contact</a>
+    <a href="profile.html">Profil</a>
+  </div>
+
+  <!-- Conținutul paginii de profil -->
+  <main class="profile-container">
+    <h1>Profilul Meu</h1>
+    <div class="profile-info">
+      <div class="profile-photo">
+        <img src="assets/profile-photo.jpg" alt="Fotografie de profil">
+      </div>
+      <div class="profile-details">
+        <h2>Ion Popescu</h2>
+        <p>Email: ion.popescu@example.com</p>
+        <p>Telefon: +40 712 345 678</p>
+        <p>Locație: București, România</p>
+        <button class="edit-btn">Editează Profilul</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
