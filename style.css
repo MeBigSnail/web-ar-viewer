@@ -125,9 +125,6 @@
     width: 36px;
     height: 36px;
   }
-}
-
-@media (max-width: 480px) {
   .product-grid {
     grid-template-columns: 1fr;
     padding: 10px;
