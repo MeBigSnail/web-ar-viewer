@@ -166,3 +166,64 @@ header {
   color: white;
   cursor: pointer;
 }
+
+
+                                                                                                                /* Pagina de Profil */
+.profile-container {
+  margin: 40px;
+}
+
+.profile-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.profile-photo img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-details {
+  text-align: left;
+  font-size: 16px;
+}
+
+.profile-details h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.edit-btn {
+  background-color: #2e3a59;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.edit-btn:hover {
+  background-color: #44527a;
+}
+
+/* Responsivitate */
+@media (max-width: 768px) {
+  .profile-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile-photo img {
+    width: 100px;
+    height: 100px;
+  }
+}
