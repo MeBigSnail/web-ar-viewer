@@ -52,6 +52,56 @@
   border-radius: 50%;
 }
 
+/* Container grilă de produse */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Card de produs */
+.product-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  max-height: 200px;
+}
+
+.product-card h2 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.product-card a {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background-color: #2e3a59;
+  color: white;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+
 /* 🔄 Responsivitate pentru ecrane mici */
 @media (max-width: 400px) {
   .top-bar {
@@ -76,4 +126,25 @@
     height: 36px;
   }
 }
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  .product-card {
+    padding: 12px;
+  }
+
+  .product-card h2 {
+    font-size: 16px;
+  }
+
+  .product-card a {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+}
+
 
