@@ -107,7 +107,7 @@ header {
 }
 
 /* ===== Responsive pentru telefon ===== */
-@media (max-width: 500px) {
+@media (max-width: 300px) {
   .top-bar {
     flex-wrap: wrap;
     flex-direction: row;
