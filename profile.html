@@ -3,29 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profilul meu</title>
+  <title>Catalog Mobilă AR</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    <!-- Bara de sus -->
+      <header class="top-bar">
+        <div class="header-left">
+          <button class="icon-btn" onclick="openMenu()">☰</button>
+        </div>
+        <div class="header-center">
+          <input type="text" id="searchInput" placeholder="Caută produse...">
+        </div>
+        <div class="header-right">
+          <!--<button class="icon-btn">👤</button> -->
+          <a href="profile.html" class="icon-btn">👤</a>
+        </div>
+      </header>
+  
+      <!-- Meniul lateral -->
+      <div id="sideMenu" class="side-menu">
+        <button class="close-btn" onclick="closeMenu()">×</button>
+        <a href="#">Home</a>
+        <a href="#">Library</a>
+        <a href="#">About</a>
+      </div>
 
-  <!-- Bara de sus -->
-  <header class="top-bar">
-    <button class="icon-btn" onclick="openMenu()">☰</button>
-    <div class="search-container">
-      <input type="text" id="searchInput" placeholder="Caută produse..." />
-    </div>
-    <button class="icon-btn">👤</button>
-  </header>
-
-  <!-- Meniul lateral -->
-  <div id="sideMenu" class="side-menu">
-    <button class="close-btn" onclick="closeMenu()">×</button>
-    <a href="#">Acasă</a>
-    <a href="#">Produse</a>
-    <a href="#">Despre Noi</a>
-    <a href="#">Contact</a>
-    <a href="profile.html">Profil</a>
-  </div>
 
   <!-- Conținutul paginii de profil -->
   <main class="profile-container">
