@@ -1,36 +1,52 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catalog Mobilă AR</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
 <body>
+  <!-- Header -->
   <header class="top-bar">
-    <div class="left">
-      <button class="profile-btn">👤 Profil</button>
+    <div class="header-left">
+      <button class="icon-btn">👤</button>
     </div>
 
-    <div class="center">
+    <div class="header-center">
       <input type="text" id="searchInput" placeholder="Caută produse..." />
     </div>
 
-    <div class="right">
-      <button class="menu-btn">☰ Meniu</button>
+    <div class="header-right">
+      <button class="icon-btn">☰</button>
     </div>
   </header>
 
+  <!-- Lista Produse -->
   <main class="product-grid" id="productGrid">
-    <!-- Produsele rămân la fel -->
+    <!-- Scaun -->
     <div class="product-card" data-name="Scaun">
       <img src="assets/chair.jpg" alt="Scaun confortabil">
       <h2>Scaun</h2>
       <a href="product.html?model=chair.glb">Vezi în AR</a>
     </div>
 
+    <!-- Canapea -->
     <div class="product-card" data-name="Canapea">
       <img src="assets/sofa.jpg" alt="Canapea modernă">
       <h2>Canapea</h2>
       <a href="product.html?model=sofa.glb">Vezi în AR</a>
     </div>
 
+    <!-- Dulap de cărți -->
     <div class="product-card" data-name="Dulap de Cărți">
       <img src="assets/wardrobe.jpg" alt="Dulap de cărți">
       <h2>Dulap de Cărți</h2>
       <a href="product.html?model=wardrobe.glb">Vezi în AR</a>
     </div>
   </main>
+
+  <!-- Script extern -->
+  <script src="script.js"></script>
 </body>
+</html>
