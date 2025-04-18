@@ -1,13 +1,14 @@
-document.getElementById('searchInput').addEventListener('input', function () {
-  const query = this.value.toLowerCase();
-  const products = document.querySelectorAll('.product-card');
+// Căutare produse
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById("searchInput");
+  const products = document.querySelectorAll(".product-card");
 
-  products.forEach(card => {
-    const name = card.getAttribute('data-name').toLowerCase();
-    if (name.includes(query)) {
-      card.style.display = '';
-    } else {
-      card.style.display = 'none';
-    }
+  searchInput.addEventListener("input", function () {
+    const query = this.value.toLowerCase();
+
+    products.forEach((card) => {
+      const name = card.getAttribute("data-name").toLowerCase();
+      card.style.display = name.includes(query) ? "" : "none";
+    });
   });
 });
