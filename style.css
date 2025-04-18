@@ -107,7 +107,7 @@ header {
 }
 
 /* ===== Responsive pentru telefoane ===== */
-@media (max-width: 600px) {
+@media (max-width: 300px) {
   .top-bar {
     flex-direction: column;
     align-items: stretch;
