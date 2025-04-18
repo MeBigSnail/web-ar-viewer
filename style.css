@@ -1,58 +1,159 @@
-/* 🔄 Responsivitate pentru ecrane mici (max-width: 400px) */
-@media (max-width: 400px) {
+/* Resetare bază */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  line-height: 1.5;
+}
+
+/* Bara de sus */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #2e3a59;
+  color: white;
+  padding: 10px 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.header-left,
+.header-right {
+  flex: 0 0 auto;
+}
+
+.header-center {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-center input[type="text"] {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+/* Butoane icon */
+.icon-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 5px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.icon-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+/* Grilă produse */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Card produs */
+.product-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+  max-height: 200px;
+}
+
+.product-card h2 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.product-card a {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 8px 14px;
+  background-color: #2e3a59;
+  color: white;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.product-card a:hover {
+  background-color: #1c253b;
+}
+
+/* ✅ Media queries pentru ecrane mici */
+@media (max-width: 600px) {
   .top-bar {
-    flex-direction: column; /* Schimbăm direcția pe verticală pentru ecrane mici */
-    padding: 10px 10px;
-    align-items: center; /* Aliniem centrul elementelor */
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px;
   }
 
-  .header-left,
-  .header-right {
-    width: 40px;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 5px;
+  .header-center {
+    margin: 10px 0;
   }
 
   .header-center input[type="text"] {
     max-width: 100%;
-    font-size: 14px;
-    padding: 8px 12px;
-    margin-top: 5px; /* Spațiu între input și butoane */
+    padding: 8px;
   }
 
   .icon-btn {
-    font-size: 20px;
     width: 36px;
     height: 36px;
-    padding: 5px; /* Micșorăm puțin padding-ul */
+    font-size: 20px;
   }
 
   .product-grid {
-    grid-template-columns: 1fr; /* O coloană pe ecrane mici */
     padding: 10px;
+    grid-template-columns: 1fr;
   }
 
   .product-card {
     padding: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Umbra mai subtilă */
   }
 
   .product-card h2 {
     font-size: 16px;
-    margin: 8px 0; /* Ajustăm marginea */
   }
 
   .product-card a {
     font-size: 13px;
     padding: 6px 10px;
-  }
-
-  /* Îmbunătățirea stilului imaginii pentru a o face mai responsivă */
-  .product-card img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    object-fit: contain; /* Menținem raportul de aspect fără să tăiem imaginea */
   }
 }
