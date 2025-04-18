@@ -7,17 +7,24 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header class="top-bar">
-      <div class="header-left">
-        <button class="icon-btn">☰</button>
-      </div>
-      <div class="header-center">
-        <input type="text" placeholder="Caută produse...">
-      </div>
-      <div class="header-right">
+    <!-- Bara de sus -->
+      <header class="top-bar">
+        <button class="icon-btn" onclick="openMenu()">☰</button>
+      
+        <div class="search-container">
+          <input type="text" placeholder="Caută produse..." />
+        </div>
+      
         <button class="icon-btn">👤</button>
+      </header>
+      
+      <!-- Meniul lateral -->
+      <div id="sideMenu" class="side-menu">
+        <button class="close-btn" onclick="closeMenu()">×</button>
+        <a href="#">Home</a>
+        <a href="#">Library</a>
+        <a href="#">About</a>
       </div>
-    </header>
 
   <main class="product-grid">
     <!-- Scaun -->
