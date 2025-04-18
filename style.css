@@ -1,20 +1,18 @@
 .top-bar {
   display: flex;
-  align-items: center;      /* Asta le aliniează vertical pe toate pe mijloc */
+  align-items: center;
   justify-content: space-between;
   background-color: #2e3a59;
-  padding: 10px 20px;
+  padding: 10px;
   color: white;
-  height: 60px;              /* Asigurăm înălțime constantă */
-  box-sizing: border-box;
+  height: auto;
+  flex-wrap: nowrap; /* Asta previne "căderea" pe rândul următor */
+  gap: 10px;
 }
 
 .header-left,
 .header-right {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;               /* Dimensiune fixă pt aliniere perfectă cu centrul */
+  width: auto;
 }
 
 .header-center {
@@ -26,12 +24,12 @@
 
 .header-center input[type="text"] {
   width: 100%;
-  max-width: 400px;
-  padding: 10px 15px;
+  max-width: 300px;
+  padding: 10px;
   border: none;
-  border-radius: 20px;
-  font-size: 16px;
+  border-radius: 5px;
 }
+
 
 /* Stil butoane icon */
 .icon-btn {
@@ -55,7 +53,7 @@
 }
 
 /* 🔄 Responsivitate pentru ecrane mici */
-@media (max-width: 100px) {
+@media (max-width: 400px) {
   .top-bar {
     flex-direction: row;
     padding: 10px 10px;
