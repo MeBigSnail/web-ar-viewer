@@ -12,3 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+
+function openMenu() {
+  document.getElementById('sideMenu').style.width = '250px'; /* Lățimea meniului */
+}
+
+function closeMenu() {
+  document.getElementById('sideMenu').style.width = '0';
+}
+
