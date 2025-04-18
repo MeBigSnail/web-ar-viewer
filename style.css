@@ -55,7 +55,7 @@
 }
 
 /* 🔄 Responsivitate pentru ecrane mici */
-@media (max-width: 600px) {
+@media (max-width: 100px) {
   .top-bar {
     flex-direction: row;
     padding: 10px 10px;
