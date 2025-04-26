@@ -76,8 +76,11 @@ function toggleProfileMenu() {
       `;
     }
 
-          // Funcție pentru Register
-    
+    menu.style.display = 'block';
+  }
+}
+
+// AICI SEPARAT — funcția register()
 function register() {
   const email = document.getElementById('loginEmail').value;
   const password = document.getElementById('loginPassword').value;
@@ -92,9 +95,7 @@ function register() {
       alert(error.message);
     });
 }
-    menu.style.display = 'block';
-  }
-}
+
 
 function showRegister() {
   document.getElementById('popupTitle').innerText = "Înregistrare";
