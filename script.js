@@ -58,3 +58,29 @@ function logout() {
       console.error("Eroare la logout:", error.message);
     });
 }
+
+// Deschide popup Login
+function openLoginPopup() {
+  document.getElementById('loginPopup').style.display = 'flex';
+}
+
+// Închide popup Login
+function closeLoginPopup() {
+  document.getElementById('loginPopup').style.display = 'none';
+}
+
+// Login prin Firebase
+function login() {
+  const email = document.getElementById('loginEmail').value;
+  const password = document.getElementById('loginPassword').value;
+
+  auth.signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      alert('Logare reușită!');
+      closeLoginPopup();
+      window.location.reload();
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
+}
