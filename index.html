@@ -24,16 +24,22 @@
       </div>
     </header>
 
-    <!-- Popup Login -->
+    <!-- Popup Login/Register -->
     <div id="loginPopup" class="popup-overlay">
-      <div class="popup-content">
-        <h2>Autentificare</h2>
+      <div class="popup-content" id="popupContent">
+        <h2 id="popupTitle">Autentificare</h2>
+    
         <input type="email" id="loginEmail" placeholder="Email" required />
         <input type="password" id="loginPassword" placeholder="Parolă" required />
-        <button onclick="login()">Logare</button>
+    
+        <button id="loginButton" onclick="login()">Logare</button>
+        
+        <p id="toggleText">Nu ai cont? <a href="#" onclick="showRegister()">Înregistrează-te aici</a></p>
+    
         <button onclick="closeLoginPopup()" class="close-btn">Închide</button>
       </div>
     </div>
+
     
     <!-- Meniul lateral -->
     <div id="sideMenu" class="side-menu">
