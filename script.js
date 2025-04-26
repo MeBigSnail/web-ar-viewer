@@ -76,6 +76,22 @@ function toggleProfileMenu() {
       `;
     }
 
+          // Funcție pentru Register
+    
+function register() {
+  const email = document.getElementById('loginEmail').value;
+  const password = document.getElementById('loginPassword').value;
+
+  auth.createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      alert('Cont creat cu succes!');
+      closeLoginPopup();
+      window.location.reload();
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
+}
     menu.style.display = 'block';
   }
 }
