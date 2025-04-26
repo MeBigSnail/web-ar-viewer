@@ -259,3 +259,27 @@ header {
   background-color: #f1f1f1;
 }
 
+.profile-dropdown {
+  position: absolute;
+  right: 10px;
+  top: 60px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 150px;
+  display: none;
+  flex-direction: column;
+  text-align: left;
+  z-index: 1000;
+}
+
+.profile-dropdown a {
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+}
+
+.profile-dropdown a:hover {
+  background-color: #f0f0f0;
+}
+
