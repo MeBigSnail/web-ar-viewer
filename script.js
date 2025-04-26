@@ -21,12 +21,30 @@ function closeMenu() {
 
 function toggleProfileMenu() {
   const menu = document.getElementById('profileMenu');
+
   if (menu.style.display === 'flex' || menu.style.display === 'block') {
     menu.style.display = 'none';
   } else {
-    menu.style.display = 'block';
+    // Înainte să arătăm meniul, setăm ce linkuri afișăm în funcție dacă userul e logat
+    const user = firebase.auth().currentUser;
+
+    if (user) {
+      // User logat
+      menu.innerHTML = `
+        <a href="profile.html">My Profile</a>
+        <a href="#" onclick="logout()">Log Out</a>
+      `;
+    } else {
+      // User nelogat
+      menu.innerHTML = `
+        <a href="#" onclick="openLoginPopup()">Log In</a>
+      `;
+    }
+
+    menu.style.display = 'block'; // sau 'flex', depinde de stilul tău
   }
 }
+
                                               //Când starea utilizatorului se schimbă (logat sau nelogat)
 
 auth.onAuthStateChanged((user) => {
