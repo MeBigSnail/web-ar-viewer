@@ -25,36 +25,16 @@ function closeMenu() {
 
 
 
-
-                              // Simulăm dacă utilizatorul e logat
-
-let isLoggedIn = true; // Schimbă în false ca să testezi
-
-function toggleProfileMenu() {
-  const dropdown = document.getElementById('profileDropdown');
-  if (dropdown.style.display === 'block') {
-    dropdown.style.display = 'none';
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log("User este logat:", user.email);
+    // Afișează butoane My Profile / Log Out
   } else {
-    // Curățăm dropdown-ul
-    dropdown.innerHTML = '';
-
-    if (isLoggedIn) {
-      dropdown.innerHTML += '<a href="profile.html">My Profile</a>';
-      dropdown.innerHTML += '<a href="#" onclick="logout()">Log Out</a>';
-    } else {
-      dropdown.innerHTML += '<a href="login.html">Log In</a>';
-    }
-
-    dropdown.style.display = 'block';
+    console.log("Nimeni nu este logat.");
+    // Afișează buton Log In
   }
-}
+});
 
-function logout() {
-  isLoggedIn = false;
-  alert('Te-ai delogat!');
-  // Oprește meniul după delogare
-  document.getElementById('profileDropdown').style.display = 'none';
-}
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
