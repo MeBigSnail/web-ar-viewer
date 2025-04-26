@@ -7,27 +7,30 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Bara de sus -->
-      <header class="top-bar">
-        <div class="header-left">
-          <button class="icon-btn" onclick="openMenu()">☰</button>
-        </div>
-        <div class="header-center">
-          <input type="text" id="searchInput" placeholder="Caută produse...">
-        </div>
-        <div class="profile-menu header-right">
-          <button class="icon-btn" onclick="toggleProfileMenu()">👤</button>
-          <div id="profileMenu" class="profile-menu"></div>
-        </div>
-      </header>
   
-      <!-- Meniul lateral -->
-      <div id="sideMenu" class="side-menu">
-        <button class="close-btn" onclick="closeMenu()">×</button>
-          <a href="index.html">Home</a>
-          <a href="library.html">Library</a>
-          <a href="about.html">About</a>
+    <!-- Bara de sus -->
+    <header class="top-bar">
+      <div class="header-left">
+        <button class="icon-btn" onclick="openMenu()">☰</button>
       </div>
+    
+      <div class="header-center">
+        <input type="text" id="searchInput" placeholder="Caută produse...">
+      </div>
+    
+      <div class="header-right">
+        <button class="icon-btn" onclick="toggleProfileMenu()">👤</button>
+        <div id="profileMenu" class="profile-dropdown"></div> <!-- Schimbă clasa aici -->
+      </div>
+    </header>
+    
+    <!-- Meniul lateral -->
+    <div id="sideMenu" class="side-menu">
+      <button class="close-btn" onclick="closeMenu()">×</button>
+      <a href="index.html">Home</a>
+      <a href="library.html">Library</a>
+      <a href="about.html">About</a>
+    </div>
 
   <main class="product-grid">
     <!-- Scaun -->
