@@ -297,9 +297,9 @@ header {
 }
 
 .popup-content {
-  position: relative; /* foarte important! */
+  position: relative;
   background: white;
-  padding: 40px 20px 30px 20px; /* padding top mai mare ca să încapă X-ul sus */
+  padding: 40px 20px 30px 20px;
   border-radius: 12px;
   text-align: center;
   width: 90%;
@@ -334,19 +334,23 @@ header {
   background-color: #ccc;
   margin-top: 8px;
 }
+
+/* Butonul X mic și elegant */
+
 .close-btn-top {
   position: absolute;
-  top: 10px; /* cât de sus */
-  right: 10px; /* cât de la dreapta */
+  top: 10px;
+  right: 10px;
   background: none;
   border: none;
-  font-size: 24px;
-  color: #555;
-  font-weight: bold;
+  font-size: 20px; /* Micșorăm fontul! */
+  color: #999; /* Culoare gri deschis */
   cursor: pointer;
+  padding: 0; /* Fără padding */
+  line-height: 1; /* Aliniere corectă */
 }
 
 .close-btn-top:hover {
-  color: #2e3a59;
+  color: #2e3a59; /* La hover, devine albastru închis */
 }
 
