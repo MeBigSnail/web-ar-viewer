@@ -18,15 +18,13 @@ document.addEventListener("DOMContentLoaded", function () {
 function openMenu() {
   document.getElementById('sideMenu').style.width = '250px'; /* Lățimea meniului */
 }
-
 function closeMenu() {
   document.getElementById('sideMenu').style.width = '0';
 }
 
 
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+
 const firebaseConfig = {
   apiKey: "AIzaSyDQjt5Vqyp7zs5ppnZasuNHKkGg6DTGFQU",
   authDomain: "furniturefuture-ed302.firebaseapp.com",
@@ -117,9 +115,3 @@ function toggleProfileMenu() {
     ? '<a href="profile.html">My Profile</a><a href="#" onclick="logout()">Log Out</a>'
     : '<a href="login.html">Log In</a>';
 }
-
-function logout() {
-  localStorage.setItem('loggedIn', 'false');
-  location.reload();
-}
-
