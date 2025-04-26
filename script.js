@@ -106,3 +106,20 @@ function openLoginModal() {
   alert("Aici ar trebui să apară un formular de Login!");
 }
 
+function toggleProfileMenu() {
+  const menu = document.getElementById('profileMenu');
+  menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+
+  // Exemplu simplu: presupunem că există o variabilă "loggedIn"
+  const loggedIn = localStorage.getItem('loggedIn') === 'true';
+
+  menu.innerHTML = loggedIn
+    ? '<a href="profile.html">My Profile</a><a href="#" onclick="logout()">Log Out</a>'
+    : '<a href="login.html">Log In</a>';
+}
+
+function logout() {
+  localStorage.setItem('loggedIn', 'false');
+  location.reload();
+}
+
