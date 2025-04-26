@@ -339,15 +339,16 @@ header {
 
 .close-btn-top {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 12px;
+  right: 12px;
   background: none;
   border: none;
-  font-size: 20px; /* Micșorăm fontul! */
-  color: #999; /* Culoare gri deschis */
+  font-size: 18px; /* Mic - exact cum vrei */
+  color: #555;
   cursor: pointer;
-  padding: 0; /* Fără padding */
-  line-height: 1; /* Aliniere corectă */
+  padding: 0;
+  margin: 0;
+  line-height: 1;
 }
 
 .close-btn-top:hover {
