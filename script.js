@@ -1,11 +1,12 @@
 // Inițializare Firebase
 const firebaseConfig = {
-  apiKey: "AIzaxxxxxxx",
-  authDomain: "catalog-mobila.firebaseapp.com",
-  projectId: "catalog-mobila",
-  storageBucket: "catalog-mobila.appspot.com",
-  messagingSenderId: "xxxxxxx",
-  appId: "x:xxxxxxxxx:web:xxxxxxx"
+  apiKey: "AIzaSyDQjt5Vqyp7zs5ppnZasuNHKkGg6DTGFQU",
+  authDomain: "furniturefuture-ed302.firebaseapp.com",
+  projectId: "furniturefuture-ed302",
+  storageBucket: "furniturefuture-ed302.firebasestorage.app",
+  messagingSenderId: "746220689658",
+  appId: "1:746220689658:web:2fc5949203b9de6fb11143",
+  measurementId: "G-GBMPN4YJ7Y"
 };
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
