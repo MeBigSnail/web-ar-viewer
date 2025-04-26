@@ -23,6 +23,17 @@
         <div id="profileMenu" class="profile-dropdown"></div> <!-- Schimbă clasa aici -->
       </div>
     </header>
+
+    <!-- Popup Login -->
+    <div id="loginPopup" class="popup-overlay">
+      <div class="popup-content">
+        <h2>Autentificare</h2>
+        <input type="email" id="loginEmail" placeholder="Email" required />
+        <input type="password" id="loginPassword" placeholder="Parolă" required />
+        <button onclick="login()">Logare</button>
+        <button onclick="closeLoginPopup()" class="close-btn">Închide</button>
+      </div>
+    </div>
     
     <!-- Meniul lateral -->
     <div id="sideMenu" class="side-menu">
