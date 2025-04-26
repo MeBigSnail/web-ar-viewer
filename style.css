@@ -297,6 +297,7 @@ header {
 }
 
 .popup-content {
+  position: relative; /* Asta lipsea ca X-ul să stea sus! */
   background: white;
   padding: 30px;
   border-radius: 12px;
