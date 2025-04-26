@@ -55,3 +55,26 @@ function logout() {
   // Oprește meniul după delogare
   document.getElementById('profileDropdown').style.display = 'none';
 }
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDQjt5Vqyp7zs5ppnZasuNHKkGg6DTGFQU",
+  authDomain: "furniturefuture-ed302.firebaseapp.com",
+  projectId: "furniturefuture-ed302",
+  storageBucket: "furniturefuture-ed302.firebasestorage.app",
+  messagingSenderId: "746220689658",
+  appId: "1:746220689658:web:2fc5949203b9de6fb11143",
+  measurementId: "G-GBMPN4YJ7Y"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
