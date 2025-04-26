@@ -15,10 +15,18 @@
         <div class="header-center">
           <input type="text" id="searchInput" placeholder="Caută produse...">
         </div>
-        <div class="header-right">
+<!--         <div class="header-right">
           <!--<button class="icon-btn">👤</button> -->
           <a href="profile.html" class="icon-btn">👤</a>
+        </div> -->
+
+        <div class="profile-menu header-right">
+          <button class="icon-btn" onclick="toggleProfileMenu()">👤</button>
+          <div id="profileDropdown" class="dropdown-content">
+            <!-- Aici se va umple din JavaScript -->
+          </div>
         </div>
+
       </header>
   
       <!-- Meniul lateral -->
