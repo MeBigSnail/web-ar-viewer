@@ -297,9 +297,9 @@ header {
 }
 
 .popup-content {
-  position: relative; /* Asta lipsea ca X-ul să stea sus! */
+  position: relative; /* foarte important! */
   background: white;
-  padding: 30px;
+  padding: 40px 20px 30px 20px; /* padding top mai mare ca să încapă X-ul sus */
   border-radius: 12px;
   text-align: center;
   width: 90%;
@@ -336,14 +336,14 @@ header {
 }
 .close-btn-top {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: 10px; /* cât de sus */
+  right: 10px; /* cât de la dreapta */
   background: none;
   border: none;
-  font-size: 28px;
-  color: #333;
+  font-size: 24px;
+  color: #555;
+  font-weight: bold;
   cursor: pointer;
-  z-index: 10;
 }
 
 .close-btn-top:hover {
