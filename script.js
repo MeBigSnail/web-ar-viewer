@@ -24,26 +24,9 @@ function closeMenu() {
 }
 
 
-
-firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    console.log("User este logat:", user.email);
-    // Afișează butoane My Profile / Log Out
-  } else {
-    console.log("Nimeni nu este logat.");
-    // Afișează buton Log In
-  }
-});
-
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDQjt5Vqyp7zs5ppnZasuNHKkGg6DTGFQU",
   authDomain: "furniturefuture-ed302.firebaseapp.com",
@@ -55,6 +38,71 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+// ✅ Verificare dacă userul e logat
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log("✅ User logat:", user.email);
+    showProfileMenu(user);
+  } else {
+    console.log("🚫 User nelogat");
+    showLoginMenu();
+  }
+});
+
+// ✅ Login
+function login(email, password) {
+  auth.signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      console.log("Logare reușită:", userCredential.user.email);
+    })
+    .catch((error) => {
+      console.error("Eroare la login:", error.message);
+    });
+}
+
+// ✅ Logout
+function logout() {
+  auth.signOut()
+    .then(() => {
+      console.log("Deconectare reușită");
+    })
+    .catch((error) => {
+      console.error("Eroare la logout:", error.message);
+    });
+}
+
+// ✅ Register (Creare cont nou)
+function register(email, password) {
+  auth.createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      console.log("Cont creat:", userCredential.user.email);
+    })
+    .catch((error) => {
+      console.error("Eroare la înregistrare:", error.message);
+    });
+}
+
+// ✅ Schimbare meniul din profil în funcție de login/logout
+function showProfileMenu(user) {
+  const profileMenu = document.getElementById('profileMenu');
+  profileMenu.innerHTML = `
+    <a href="#">My Profile</a>
+    <a href="#" onclick="logout()">Log Out</a>
+  `;
+}
+
+function showLoginMenu() {
+  const profileMenu = document.getElementById('profileMenu');
+  profileMenu.innerHTML = `
+    <a href="#" onclick="openLoginModal()">Log In</a>
+  `;
+}
+
+// ✅ Exemplu funcție pentru a deschide un modal de login (opțional)
+function openLoginModal() {
+  alert("Aici ar trebui să apară un formular de Login!");
+}
 
