@@ -60,7 +60,7 @@ auth.onAuthStateChanged((user) => {
   } else {
     console.log("User nelogat");
     profileMenu.innerHTML = `
-      <a href="login.html">Log In</a>
+      <a href="#" onclick="openLoginPopup()">Log In</a>
     `;
   }
 });
