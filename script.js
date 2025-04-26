@@ -95,3 +95,18 @@ function register() {
     menu.style.display = 'block';
   }
 }
+
+function showRegister() {
+  document.getElementById('popupTitle').innerText = "Înregistrare";
+  document.getElementById('loginButton').innerText = "Înregistrează-te";
+  document.getElementById('loginButton').setAttribute("onclick", "register()");
+  document.getElementById('toggleText').innerHTML = `Ai deja cont? <a href="#" onclick="showLogin()">Logare aici</a>`;
+}
+
+function showLogin() {
+  document.getElementById('popupTitle').innerText = "Autentificare";
+  document.getElementById('loginButton').innerText = "Logare";
+  document.getElementById('loginButton').setAttribute("onclick", "login()");
+  document.getElementById('toggleText').innerHTML = `Nu ai cont? <a href="#" onclick="showRegister()">Înregistrează-te aici</a>`;
+}
+
