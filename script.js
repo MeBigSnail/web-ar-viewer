@@ -3,7 +3,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyDQjt5Vqyp7zs5ppnZasuNHKkGg6DTGFQU",
   authDomain: "furniturefuture-ed302.firebaseapp.com",
   projectId: "furniturefuture-ed302",
-  storageBucket: "furniturefuture-ed302.firebasestorage.app",
+  storageBucket: "furniturefuture-ed302.appspot.com",
   messagingSenderId: "746220689658",
   appId: "1:746220689658:web:2fc5949203b9de6fb11143",
   measurementId: "G-GBMPN4YJ7Y"
@@ -82,8 +82,13 @@ function toggleProfileMenu() {
 
 // AICI SEPARAT — funcția register()
 function register() {
-  const email = document.getElementById('loginEmail').value;
-  const password = document.getElementById('loginPassword').value;
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value.trim();
+
+  if (email === "" || password === "") {
+    alert("Te rugăm să completezi toate câmpurile!");
+    return;
+  }
 
   auth.createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
@@ -92,10 +97,10 @@ function register() {
       window.location.reload();
     })
     .catch((error) => {
+      console.error("Eroare la înregistrare:", error.message);
       alert(error.message);
     });
 }
-
 
 function showRegister() {
   document.getElementById('popupTitle').innerText = "Înregistrare";
