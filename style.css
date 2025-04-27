@@ -307,6 +307,20 @@ header {
   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
+/* Mic X în colțul alb */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 22px; /* Mic */
+  color: #555;
+  cursor: pointer;
+  user-select: none;
+}
+
+.close-button:hover {
+  color: #2e3a59;
+}
 .popup-content input {
   width: 100%;
   margin: 10px 0;
@@ -334,24 +348,3 @@ header {
   background-color: #ccc;
   margin-top: 8px;
 }
-
-/* Butonul X mic și elegant */
-
-.close-btn-top {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: none;
-  border: none;
-  font-size: 18px; /* Mic - exact cum vrei */
-  color: #555;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-  line-height: 1;
-}
-
-.close-btn-top:hover {
-  color: #2e3a59; /* La hover, devine albastru închis */
-}
-
