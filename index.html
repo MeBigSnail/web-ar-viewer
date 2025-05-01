@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Catalog MobilÄƒ AR</title>
+  <title>Catalog Mobilă AR</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  
+
+  <!-- Bara de sus -->
   <header class="top-bar">
     <div class="header-left">
-      <button class="icon-btn" onclick="openMenu()">â˜°</button>
+      <button class="icon-btn" onclick="openMenu()">☰</button>
     </div>
     <div class="header-center">
-      <input type="text" id="searchInput" placeholder="CautÄƒ produse...">
+      <input type="text" id="searchInput" placeholder="Caută produse...">
     </div>
     <div class="header-right">
-      <button class="icon-btn" onclick="toggleProfileMenu()">ðŸ‘¤</button>
+      <button class="icon-btn" onclick="toggleProfileMenu()">👤</button>
       <div id="profileMenu" class="profile-dropdown"></div>
     </div>
   </header>
@@ -24,46 +25,50 @@
   <!-- Popup Login/Register -->
   <div id="loginPopup" class="popup-overlay">
     <div class="popup-content" id="popupContent">
-      <span class="close-button" onclick="closeLoginPopup()">Ã—</span>
+      <span class="close-button" onclick="closeLoginPopup()">&times;</span>
       <h2 id="popupTitle">Autentificare</h2>
 
-      <input type="text" id="displayName" placeholder="Nume complet" style="display:none;" />
-      <input type="tel" id="phoneNumber" placeholder="Telefon" style="display:none;" />
-      <input type="text" id="photoURL" placeholder="URL pozÄƒ profil (opÈ›ional)" style="display:none;" />
+      <input type="text" id="displayName" placeholder="Nume complet" style="display: none;" />
+      <input type="tel" id="phoneNumber" placeholder="Telefon" style="display: none;" />
+      <input type="text" id="photoURL" placeholder="URL poză profil (opțional)" style="display: none;" />
 
       <input type="email" id="loginEmail" placeholder="Email" required />
-      <input type="password" id="loginPassword" placeholder="ParolÄƒ" required />
+      <input type="password" id="loginPassword" placeholder="Parolă" required />
 
       <button id="loginButton" onclick="login()">Logare</button>
-      <p id="toggleText">Nu ai cont? <a href="#" onclick="showRegister()">ÃŽnregistreazÄƒ-te aici</a></p>
+
+      <p id="toggleText">Nu ai cont? <a href="#" onclick="showRegister()">Înregistrează-te aici</a></p>
     </div>
   </div>
 
+  <!-- Meniul lateral -->
   <div id="sideMenu" class="side-menu">
-    <button class="close-btn" onclick="closeMenu()">Ã—</button>
+    <button class="close-btn" onclick="closeMenu()">×</button>
     <a href="index.html">Home</a>
     <a href="library.html">Library</a>
     <a href="about.html">About</a>
   </div>
 
+  <!-- Lista de produse -->
   <main class="product-grid">
     <div class="product-card">
       <img src="assets/chair.jpg" alt="Scaun confortabil">
       <h2>Scaun</h2>
-      <a href="product.html?model=chair.glb">Vezi Ã®n AR</a>
+      <a href="product.html?model=chair.glb">Vezi în AR</a>
     </div>
     <div class="product-card">
-      <img src="assets/sofa.jpg" alt="Canapea modernÄƒ">
+      <img src="assets/sofa.jpg" alt="Canapea modernă">
       <h2>Canapea</h2>
-      <a href="product.html?model=sofa.glb">Vezi Ã®n AR</a>
+      <a href="product.html?model=sofa.glb">Vezi în AR</a>
     </div>
     <div class="product-card">
-      <img src="assets/wardrobe.jpg" alt="Dulap de cÄƒrÈ›i">
-      <h2>Dulap de CÄƒrÈ›i</h2>
-      <a href="product.html?model=wardrobe.glb">Vezi Ã®n AR</a>
+      <img src="assets/wardrobe.jpg" alt="Dulap de cărți">
+      <h2>Dulap de Cărți</h2>
+      <a href="product.html?model=wardrobe.glb">Vezi în AR</a>
     </div>
   </main>
 
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="script.js"></script>
