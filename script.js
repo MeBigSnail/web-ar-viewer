@@ -1,3 +1,4 @@
+// Inițializare Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyDQjt5Vqyp7zs5ppnZasuNHKkGg6DTGFQU",
   authDomain: "furniturefuture-ed302.firebaseapp.com",
@@ -11,12 +12,15 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
+// Meniu lateral
 function openMenu() {
   document.getElementById('sideMenu').style.width = '250px';
 }
 function closeMenu() {
   document.getElementById('sideMenu').style.width = '0';
 }
+
+// Popup Login
 function openLoginPopup() {
   document.getElementById('loginPopup').style.display = 'flex';
 }
@@ -24,6 +28,7 @@ function closeLoginPopup() {
   document.getElementById('loginPopup').style.display = 'none';
 }
 
+// Login
 function login() {
   const email = document.getElementById('loginEmail').value;
   const password = document.getElementById('loginPassword').value;
@@ -37,12 +42,14 @@ function login() {
     .catch((error) => alert(error.message));
 }
 
+// Logout
 function logout() {
   auth.signOut().then(() => {
     window.location.href = "index.html";
   });
 }
 
+// Meniu profil
 function toggleProfileMenu() {
   const menu = document.getElementById('profileMenu');
   if (menu.style.display === 'flex' || menu.style.display === 'block') {
@@ -58,6 +65,7 @@ function toggleProfileMenu() {
   }
 }
 
+// Trecere la formular înregistrare
 function showRegister() {
   document.getElementById('popupTitle').innerText = "Înregistrare";
   document.getElementById('loginButton').innerText = "Înregistrează-te";
@@ -68,6 +76,7 @@ function showRegister() {
   document.getElementById('photoURL').style.display = 'block';
 }
 
+// Trecere la formular logare
 function showLogin() {
   document.getElementById('popupTitle').innerText = "Autentificare";
   document.getElementById('loginButton').innerText = "Logare";
@@ -78,6 +87,7 @@ function showLogin() {
   document.getElementById('photoURL').style.display = 'none';
 }
 
+// Înregistrare nouă
 function register() {
   const email = document.getElementById('loginEmail').value.trim();
   const password = document.getElementById('loginPassword').value.trim();
@@ -95,7 +105,7 @@ function register() {
       const user = userCredential.user;
       return user.updateProfile({
         displayName: displayName,
-        photoURL: photoURL || "assets/default-user.png"
+        photoURL: photoURL || ""
       }).then(() => {
         localStorage.setItem("userPhone", phone);
         alert("Cont creat!");
@@ -106,12 +116,11 @@ function register() {
     .catch((error) => alert(error.message));
 }
 
+// Afișare date în profil
 auth.onAuthStateChanged((user) => {
   if (document.getElementById("userEmail") && user) {
     document.getElementById("userEmail").textContent = user.email;
     document.getElementById("userName").textContent = user.displayName || "Utilizator";
-    document.getElementById("userPhoto").src = user.photoURL || "assets/default-user.png";
-    document.getElementById("userUID").textContent = user.uid;
     document.getElementById("userPhone").textContent = localStorage.getItem("userPhone") || "Nespecificat";
   }
 });
