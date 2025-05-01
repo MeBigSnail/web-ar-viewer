@@ -65,7 +65,6 @@ function showRegister() {
   document.getElementById('toggleText').innerHTML = `Ai deja cont? <a href="#" onclick="showLogin()">Logare aici</a>`;
   document.getElementById('displayName').style.display = 'block';
   document.getElementById('phoneNumber').style.display = 'block';
-  document.getElementById('photoURL').style.display = 'block';
 }
 
 function showLogin() {
@@ -75,7 +74,6 @@ function showLogin() {
   document.getElementById('toggleText').innerHTML = `Nu ai cont? <a href="#" onclick="showRegister()">Înregistrează-te aici</a>`;
   document.getElementById('displayName').style.display = 'none';
   document.getElementById('phoneNumber').style.display = 'none';
-  document.getElementById('photoURL').style.display = 'none';
 }
 
 function register() {
@@ -83,7 +81,6 @@ function register() {
   const password = document.getElementById('loginPassword').value.trim();
   const displayName = document.getElementById('displayName').value.trim();
   const phone = document.getElementById('phoneNumber').value.trim();
-  const photoURL = document.getElementById('photoURL').value.trim();
 
   if (!email || !password || !displayName) {
     alert("Completează toate câmpurile obligatorii!");
@@ -95,7 +92,6 @@ function register() {
       const user = userCredential.user;
       return user.updateProfile({
         displayName: displayName,
-        photoURL: photoURL || "assets/default-user.png"
       }).then(() => {
         localStorage.setItem("userPhone", phone);
         alert("Cont creat!");
@@ -110,7 +106,6 @@ auth.onAuthStateChanged((user) => {
   if (document.getElementById("userEmail") && user) {
     document.getElementById("userEmail").textContent = user.email;
     document.getElementById("userName").textContent = user.displayName || "Utilizator";
-    document.getElementById("userPhoto").src = user.photoURL || "assets/default-user.png";
     document.getElementById("userUID").textContent = user.uid;
     document.getElementById("userPhone").textContent = localStorage.getItem("userPhone") || "Nespecificat";
   }
