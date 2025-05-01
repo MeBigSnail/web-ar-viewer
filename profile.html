@@ -7,25 +7,28 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Bara de sus -->
   <header class="top-bar">
     <div class="header-left">
-      <button class="icon-btn" onclick="openMenu()">â˜°</button>
+      <button class="icon-btn" onclick="openMenu()">☰</button>
     </div>
     <div class="header-center">
-      <input type="text" id="searchInput" placeholder="CautÄƒ produse...">
+      <input type="text" id="searchInput" placeholder="Caută produse...">
     </div>
     <div class="header-right">
-      <a href="profile.html" class="icon-btn">ðŸ‘¤</a>
+      <a href="profile.html" class="icon-btn">👤</a>
     </div>
   </header>
 
+  <!-- Meniul lateral -->
   <div id="sideMenu" class="side-menu">
-    <button class="close-btn" onclick="closeMenu()">Ã—</button>
+    <button class="close-btn" onclick="closeMenu()">×</button>
     <a href="index.html">Home</a>
     <a href="library.html">Library</a>
     <a href="about.html">About</a>
   </div>
 
+  <!-- Profilul utilizatorului -->
   <main class="profile-container">
     <h1>Profilul Meu</h1>
     <div class="profile-info">
@@ -42,6 +45,7 @@
     </div>
   </main>
 
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="script.js"></script>
