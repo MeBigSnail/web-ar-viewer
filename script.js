@@ -120,18 +120,3 @@ auth.onAuthStateChanged((user) => {
     document.getElementById("userPhone").textContent = localStorage.getItem("userPhone") || "Nespecificat";
   }
 });
-
-// pentru product vizoalizare
-if (window.location.pathname.includes("product.html")) {
-  const urlParams = new URLSearchParams(window.location.search);
-  const modelName = urlParams.get('model');
-
-  if (modelName) {
-    const viewer = document.getElementById('viewer');
-    viewer.src = `models/${modelName}`; // fără .glb dacă deja e în URL
-  } else {
-    console.error('Nu a fost găsit niciun model în URL!');
-  }
-}
-
-
