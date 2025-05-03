@@ -37,7 +37,7 @@ function login() {
     .then(() => {
       alert('Logare reușită!');
       closeLoginPopup();
-      window.location.reload();
+      window.location.reload(); // Reîncarcă pagina pentru a reflecta autentificarea
     })
     .catch((error) => alert(error.message));
 }
@@ -106,7 +106,7 @@ function register() {
         localStorage.setItem("userPhone", phone);
         alert("Cont creat!");
         closeLoginPopup();
-        window.location.reload();
+        window.location.reload(); // Reîncarcă pagina după înregistrare
       });
     })
     .catch((error) => alert(error.message));
@@ -121,13 +121,11 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
-          //   add favorite
+// Adăugare în favorite
 function addToFavorites(productId, productName, productImage) {
   const user = firebase.auth().currentUser;
   if (user) {
     const userRef = firebase.firestore().collection('favorites').doc(user.uid);
-    
-    // Adăugăm produsul în colecția "favorites" a utilizatorului
     userRef.update({
       products: firebase.firestore.FieldValue.arrayUnion({
         id: productId,
@@ -143,14 +141,12 @@ function addToFavorites(productId, productName, productImage) {
     alert('Te rugăm să te autentifici pentru a adăuga la favorite.');
   }
 }
-//  afisare favorite
 
-// Funcție pentru a încărca produsele favorite
+// Funcție pentru a încărca favoritele
 function loadFavorites() {
   const user = firebase.auth().currentUser;
   if (user) {
     const favoritesRef = firebase.firestore().collection('favorites').doc(user.uid);
-
     favoritesRef.get().then((doc) => {
       if (doc.exists) {
         const products = doc.data().products;
@@ -187,7 +183,6 @@ function removeFromFavorites(productId) {
   const user = firebase.auth().currentUser;
   if (user) {
     const favoritesRef = firebase.firestore().collection('favorites').doc(user.uid);
-
     favoritesRef.update({
       products: firebase.firestore.FieldValue.arrayRemove({
         id: productId
@@ -203,7 +198,7 @@ function removeFromFavorites(productId) {
   }
 }
 
-// Încărcăm produsele favorite când pagina este încărcată
+// Încărcăm favoritele la încărcarea paginii
 window.onload = function() {
   loadFavorites();
 };
