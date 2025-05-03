@@ -120,3 +120,26 @@ auth.onAuthStateChanged((user) => {
     document.getElementById("userPhone").textContent = localStorage.getItem("userPhone") || "Nespecificat";
   }
 });
+
+//   add favorite
+function addToFavorites(productId, productName, productImage) {
+  const user = firebase.auth().currentUser;
+  if (user) {
+    const userRef = firebase.firestore().collection('favorites').doc(user.uid);
+    
+    // Adăugăm produsul în colecția "favorites" a utilizatorului
+    userRef.update({
+      products: firebase.firestore.FieldValue.arrayUnion({
+        id: productId,
+        name: productName,
+        image: productImage
+      })
+    }).then(() => {
+      alert('Produsul a fost adăugat la favorite!');
+    }).catch((error) => {
+      console.error('Eroare la adăugarea produsului: ', error);
+    });
+  } else {
+    alert('Te rugăm să te autentifici pentru a adăuga la favorite.');
+  }
+}
