@@ -121,32 +121,17 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
-// Adăugare în favorite
-function addToFavorites(productId, productName, productImage) {
-  const user = firebase.auth().currentUser;
-  if (user) {
-    const userRef = firebase.firestore().collection('favorites').doc(user.uid);
-    userRef.update({
-      products: firebase.firestore.FieldValue.arrayUnion({
-        id: productId,
-        name: productName,
-        image: productImage
-      })
-    }).then(() => {
-      alert('Produsul a fost adăugat la favorite!');
-    }).catch((error) => {
-      console.error('Eroare la adăugarea produsului: ', error);
-    });
-  } else {
-    alert('Te rugăm să te autentifici pentru a adăuga la favorite.');
-  }
-}
+
+//
+
 
 // Funcție pentru a încărca favoritele
 function loadFavorites() {
   const user = firebase.auth().currentUser;
   if (user) {
+    console.log('Utilizator autentificat, încărcăm favoritele...');
     const favoritesRef = firebase.firestore().collection('favorites').doc(user.uid);
+
     favoritesRef.get().then((doc) => {
       if (doc.exists) {
         const products = doc.data().products;
@@ -155,6 +140,7 @@ function loadFavorites() {
         if (products.length === 0) {
           favoritesList.innerHTML = '<p>Nu ai adăugat niciun produs la favorite.</p>';
         } else {
+          favoritesList.innerHTML = ''; // Curățăm lista înainte de a adăuga noi produse
           products.forEach((product) => {
             const productCard = document.createElement('div');
             productCard.classList.add('product-card');
@@ -168,12 +154,13 @@ function loadFavorites() {
           });
         }
       } else {
-        console.log('Nu au fost găsite favorite.');
+        console.log('Nu au fost găsite favorite pentru acest utilizator.');
       }
     }).catch((error) => {
       console.error('Eroare la încărcarea favorite: ', error);
     });
   } else {
+    console.log('Nu ești autentificat, nu se pot încărca favoritele.');
     alert('Te rugăm să te autentifici pentru a vizualiza favoritele.');
   }
 }
@@ -188,6 +175,7 @@ function removeFromFavorites(productId) {
         id: productId
       })
     }).then(() => {
+      console.log('Produsul a fost îndepărtat din favorite.');
       alert('Produsul a fost îndepărtat din favorite.');
       // Refreshem lista pentru a reflecta modificările
       document.getElementById('favoritesList').innerHTML = '';
@@ -198,7 +186,19 @@ function removeFromFavorites(productId) {
   }
 }
 
-// Încărcăm favoritele la încărcarea paginii
+// Afișare favorite la încărcarea paginii
 window.onload = function() {
+  console.log('Încărcăm favoritele...');
   loadFavorites();
 };
+
+// Asigură-te că autentificarea este gestionată corect
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    console.log('Utilizator autentificat:', user.email);
+  } else {
+    console.log('Utilizator nu este autentificat');
+  }
+});
+
+
