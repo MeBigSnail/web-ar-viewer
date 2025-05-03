@@ -120,3 +120,11 @@ auth.onAuthStateChanged((user) => {
     document.getElementById("userPhone").textContent = localStorage.getItem("userPhone") || "Nespecificat";
   }
 });
+
+// pentru product vizoalizare
+
+const urlParams = new URLSearchParams(window.location.search);
+const modelName = urlParams.get('model');
+
+const viewer = document.getElementById('viewer');
+viewer.src = `models/${modelName}`;
