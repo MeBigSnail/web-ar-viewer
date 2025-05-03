@@ -378,3 +378,35 @@ header {
   line-height: 1.6;
 }
 
+/* Stiluri pentru pagina principală */
+main {
+  padding: 40px 20px;
+}
+
+/* Stiluri pentru modelul 3D */
+model-viewer {
+  width: 100%;
+  max-width: 600px;
+  height: 500px;
+  margin: auto;
+}
+
+/* Stiluri pentru butoane și controale */
+.controls {
+  margin-top: 20px;
+}
+
+.back-button {
+  margin-top: 40px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #2e3a59;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  background-color: #44527a;
+}
+
