@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Librărie - Favorite</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Bara de sus -->
+  <header class="top-bar">
+    <div class="header-left">
+      <button class="icon-btn" onclick="openMenu()">☰</button>
+    </div>
+    <div class="header-center">
+      <h2>Produse Favorite</h2>
+    </div>
+    <div class="header-right">
+      <button class="icon-btn" onclick="toggleProfileMenu()">👤</button>
+      <div id="profileMenu" class="profile-dropdown"></div>
+    </div>
+  </header>
+
+  <!-- Meniul lateral -->
+  <div id="sideMenu" class="side-menu">
+    <button class="close-btn" onclick="closeMenu()">×</button>
+    <a href="index.html">Home</a>
+    <a href="library.html">Library</a>
+    <a href="about.html">About</a>
+  </div>
+
+  <!-- Lista de produse favorite -->
+  <main class="product-grid" id="favoritesList">
+    <!-- Produsele favorite vor fi afișate aici -->
+  </main>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>
