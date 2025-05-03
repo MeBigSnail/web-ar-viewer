@@ -123,8 +123,14 @@ auth.onAuthStateChanged((user) => {
 
 // pentru product vizoalizare
 
+// Obține parametrul 'model' din URL
 const urlParams = new URLSearchParams(window.location.search);
 const modelName = urlParams.get('model');
 
-const viewer = document.getElementById('viewer');
-viewer.src = `models/${modelName}`;
+// Setează sursa modelului 3D
+if (modelName) {
+  const viewer = document.getElementById('viewer');
+  viewer.src = `models/${modelName}`;
+} else {
+  console.error('Nu a fost găsit niciun model în URL!');
+}
