@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Despre Disertație</title>
-  <link rel="stylesheet" href="about.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profilul Meu</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="about-container">
-    <div class="about-card">
-      <h2>Despre Disertație</h2>
+  <!-- Bara de sus -->
+  <header class="top-bar">
+    <div class="header-left">
+      <button class="icon-btn" onclick="openMenu()">☰</button>
+    </div>
+    <div class="header-center">
+      <input type="text" id="searchInput" placeholder="Caută produse...">
+    </div>
+    <div class="header-right">
+      <a href="profile.html" class="icon-btn">👤</a>
+    </div>
+  </header>
+
+  <!-- Meniul lateral -->
+  <div id="sideMenu" class="side-menu">
+    <button class="close-btn" onclick="closeMenu()">×</button>
+    <a href="index.html">Home</a>
+    <a href="library.html">Library</a>
+    <a href="about.html">About</a>
+  </div>
+
+  <!-- Profilul utilizatorului -->
+  <main class="profile-container">
+    <h1>About disertation</h1>
+    <div class="profile-info">
       <p>
         În cadrul acestei lucrări de disertație, îmi propun să dezvolt o aplicație WebAR care să permită utilizatorilor să vizualizeze mobilier în realitate augmentată, direct din browser, fără a fi necesară instalarea unor aplicații suplimentare. Utilizatorul va putea scana un cod QR care îl va redirecționa către o pagină web unde poate vizualiza un model 3D de mobilă, redat la scară reală, în propriul spațiu fizic.
       </p>
@@ -17,6 +39,11 @@
         Pentru implementare, voi utiliza modele 3D existente, disponibile gratuit pe diverse platforme online, iar redarea în realitate augmentată va fi realizată prin intermediul Google Scene Viewer. De asemenea, intenționez să adaug funcționalități care să permită utilizatorului să modifice culoarea și dimensiunea obiectului afișat, pentru a-i oferi o experiență cât mai interactivă și personalizată.
       </p>
     </div>
-  </div>
+  </main>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
