@@ -59,12 +59,5 @@
     <a href="index.html" class="back-button">Înapoi la Catalog</a>
   </main>
 
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const modelName = urlParams.get('model');
-
-    const viewer = document.getElementById('viewer');
-    viewer.src = `models/${modelName}`;
-  </script>
 </body>
 </html>
