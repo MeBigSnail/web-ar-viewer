@@ -361,3 +361,8 @@ header {
   background-color: #ccc;
   margin-top: 8px;
 }
+
+.about-card {
+  display: flex;
+  flex-direction: column;
+}
