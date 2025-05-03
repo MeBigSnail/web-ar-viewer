@@ -127,10 +127,11 @@ auth.onAuthStateChanged((user) => {
 const urlParams = new URLSearchParams(window.location.search);
 const modelName = urlParams.get('model');
 
-// Setează sursa modelului 3D
+// Setează sursa modelului 3D dacă parametrul există
 if (modelName) {
   const viewer = document.getElementById('viewer');
-  viewer.src = `models/${modelName}`;
+  viewer.src = `models/${modelName}.glb`;  // Înlocuiește cu calea corectă
 } else {
   console.error('Nu a fost găsit niciun model în URL!');
 }
+
