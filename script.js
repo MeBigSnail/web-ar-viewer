@@ -123,7 +123,16 @@ auth.onAuthStateChanged((user) => {
 
 
 //
-
+// Asigură-te că autentificarea este gestionată corect
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log("Utilizator logat:", user.email);
+    loadFavorites(); // se apelează doar când utilizatorul este autentificat
+  } else {
+    console.log("Utilizator NElogat.");
+    alert("Te rugăm să te autentifici pentru a vizualiza favoritele.");
+  }
+});
 
 // Funcție pentru a încărca favoritele
 function loadFavorites() {
@@ -192,13 +201,6 @@ window.onload = function() {
   loadFavorites();
 };
 
-// Asigură-te că autentificarea este gestionată corect
-auth.onAuthStateChanged((user) => {
-  if (user) {
-    console.log('Utilizator autentificat:', user.email);
-  } else {
-    console.log('Utilizator nu este autentificat');
-  }
-});
+
 
 
