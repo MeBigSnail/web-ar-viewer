@@ -11,6 +11,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
+const db = firebase.firestore(); // ✅ Firestore inițializat corect
 
 // Meniu lateral
 function openMenu() {
@@ -55,7 +56,7 @@ function toggleProfileMenu() {
   if (menu.style.display === 'flex' || menu.style.display === 'block') {
     menu.style.display = 'none';
   } else {
-    const user = firebase.auth().currentUser;
+    const user = auth.currentUser;
     if (user) {
       menu.innerHTML = `<a href="profile.html">My Profile</a><a href="#" onclick="logout()">Log Out</a>`;
     } else {
@@ -85,7 +86,7 @@ function showLogin() {
   document.getElementById('phoneNumber').style.display = 'none';
 }
 
-// Înregistrare nouă
+// Înregistrare
 function register() {
   const email = document.getElementById('loginEmail').value.trim();
   const password = document.getElementById('loginPassword').value.trim();
@@ -112,7 +113,7 @@ function register() {
     .catch((error) => alert(error.message));
 }
 
-// Afișare date în profil
+// Afișare date profil
 auth.onAuthStateChanged((user) => {
   if (document.getElementById("userEmail") && user) {
     document.getElementById("userEmail").textContent = user.email;
@@ -121,44 +122,32 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
-// Gestionare autentificare + încărcare favorite
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    console.log("Utilizator logat:", user.email);
-    loadFavorites();
-  } else {
-    console.log("Utilizator NElogat.");
-    alert("Te rugăm să te autentifici pentru a vizualiza favoritele.");
-  }
-});
-
-// Funcție pentru a încărca favoritele
+// Încărcare favorite
 function loadFavorites() {
-  const user = firebase.auth().currentUser;
+  const user = auth.currentUser;
   if (user) {
     console.log('Utilizator autentificat, încărcăm favoritele...');
-    const favoritesRef = firebase.firestore().collection('favorites').doc(user.uid);
+    const favoritesRef = db.collection('favorites').doc(user.uid);
 
     favoritesRef.get().then((doc) => {
       const favoritesList = document.getElementById('favoritesList');
-
       if (doc.exists) {
-        const products = doc.data().products;
+        const products = doc.data().products || [];
 
-        if (!products || products.length === 0) {
+        if (products.length === 0) {
           favoritesList.innerHTML = '<p>Nu ai adăugat niciun produs la favorite.</p>';
         } else {
           favoritesList.innerHTML = '';
           products.forEach((product) => {
-            const productCard = document.createElement('div');
-            productCard.classList.add('product-card');
-            productCard.innerHTML = `
+            const card = document.createElement('div');
+            card.classList.add('product-card');
+            card.innerHTML = `
               <img src="${product.image}" alt="${product.name}">
               <h2>${product.name}</h2>
               <a href="product.html?model=${product.id}.glb">Vezi în AR</a>
               <button onclick="removeFromFavorites('${product.id}')">Îndepărtează din favorite</button>
             `;
-            favoritesList.appendChild(productCard);
+            favoritesList.appendChild(card);
           });
         }
       } else {
@@ -166,26 +155,42 @@ function loadFavorites() {
       }
     }).catch((error) => {
       console.error('Eroare la încărcarea favorite: ', error);
+      alert("Nu s-au putut încărca favoritele. Verifică conexiunea la internet sau setările Firebase.");
+    });
+  } else {
+    console.log("Nu ești autentificat, nu se pot încărca favoritele.");
+  }
+}
+
+// Îndepărtare produs
+function removeFromFavorites(productId) {
+  const user = auth.currentUser;
+  if (user) {
+    const favoritesRef = db.collection('favorites').doc(user.uid);
+    favoritesRef.update({
+      products: firebase.firestore.FieldValue.arrayRemove({ id: productId })
+    }).then(() => {
+      alert("Produsul a fost îndepărtat.");
+      loadFavorites();
+    }).catch((error) => {
+      console.error("Eroare la ștergerea produsului:", error);
     });
   }
 }
 
-// Îndepărtare produs din favorite
-function removeFromFavorites(productId) {
-  const user = firebase.auth().currentUser;
-  if (user) {
-    const favoritesRef = firebase.firestore().collection('favorites').doc(user.uid);
-    favoritesRef.update({
-      products: firebase.firestore.FieldValue.arrayRemove({
-        id: productId
-      })
-    }).then(() => {
-      console.log('Produsul a fost îndepărtat din favorite.');
-      alert('Produsul a fost îndepărtat din favorite.');
-      document.getElementById('favoritesList').innerHTML = '';
+// Când pagina se încarcă
+window.onload = () => {
+  console.log('Încărcăm favoritele...');
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      console.log("Utilizator logat:", user.email);
       loadFavorites();
-    }).catch((error) => {
-      console.error('Eroare la îndepărtarea produsului: ', error);
-    });
-  }
-}
+    } else {
+      console.log("Utilizator neautentificat.");
+      const favoritesList = document.getElementById('favoritesList');
+      if (favoritesList) {
+        favoritesList.innerHTML = `<p>Te rugăm să te autentifici pentru a vizualiza favoritele.</p>`;
+      }
+    }
+  });
+};
