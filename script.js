@@ -177,6 +177,32 @@ function removeFromFavorites(productId) {
     });
   }
 }
+function addToFavorites(product) {
+  const user = firebase.auth().currentUser;
+  if (user) {
+    const favoritesRef = firebase.firestore().collection("favorites").doc(user.uid);
+
+    // Adaugă produsul dacă nu există deja
+    favoritesRef.get().then((doc) => {
+      let existing = doc.exists && doc.data().products ? doc.data().products : [];
+      const alreadyExists = existing.some(p => p.id === product.id);
+
+      if (!alreadyExists) {
+        favoritesRef.set({
+          products: firebase.firestore.FieldValue.arrayUnion(product)
+        }, { merge: true }).then(() => {
+          alert("Produsul a fost adăugat la favorite!");
+        }).catch((error) => {
+          console.error("Eroare la salvarea produsului:", error);
+        });
+      } else {
+        alert("Produsul este deja în favorite.");
+      }
+    });
+  } else {
+    alert("Trebuie să te autentifici pentru a adăuga la favorite.");
+  }
+}
 
 // Când pagina se încarcă
 window.onload = () => {
