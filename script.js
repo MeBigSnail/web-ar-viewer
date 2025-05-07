@@ -155,10 +155,7 @@ function loadFavorites() {
       } else {
         favoritesList.innerHTML = '<p>Nu ai adăugat niciun produs la favorite.</p>';
       }
-    }).catch((error) => {
-      console.error('Eroare la încărcarea favorite: ', error);
-      alert("Nu s-au putut încărca favoritele. Verifică conexiunea la internet sau setările Firebase.");
-    });
+    })
   } else {
     console.log("Nu ești autentificat, nu se pot încărca favoritele.");
   }
