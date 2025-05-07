@@ -115,6 +115,7 @@ function register() {
 
 // Afișare date profil
 auth.onAuthStateChanged((user) => {
+  consol.log("123 test")
   if (document.getElementById("userEmail") && user) {
     document.getElementById("userEmail").textContent = user.email;
     document.getElementById("userName").textContent = user.displayName || "Utilizator";
@@ -220,8 +221,3 @@ window.onload = () => {
     }
   });
 };
-
-firebase.auth().onAuthStateChanged(user => {
-  console.log("UID autentificat:", user?.uid);
-});
-
