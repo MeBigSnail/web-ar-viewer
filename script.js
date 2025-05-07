@@ -13,6 +13,19 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore(); // ✅ Firestore inițializat corect
 
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log("Utilizator autentificat:", user);
+    document.getElementById("userEmail").textContent = user.email;
+    document.getElementById("userName").textContent = user.displayName || "Utilizator";
+    document.getElementById("userPhone").textContent = localStorage.getItem("userPhone") || "Nespecificat";
+  } else {
+    console.log("Utilizator neautentificat.");
+  }
+});
+
+
 // Meniu lateral
 function openMenu() {
   document.getElementById('sideMenu').style.width = '250px';
