@@ -203,6 +203,7 @@ function addToFavorites(product) {
     alert("Trebuie să te autentifici pentru a adăuga la favorite.");
   }
 }
+window.addToFavorites = addToFavorites;
 
 // Când pagina se încarcă
 window.onload = () => {
