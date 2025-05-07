@@ -220,3 +220,8 @@ window.onload = () => {
     }
   });
 };
+
+firebase.auth().onAuthStateChanged(user => {
+  console.log("UID autentificat:", user?.uid);
+});
+
