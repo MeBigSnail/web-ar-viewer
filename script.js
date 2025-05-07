@@ -42,6 +42,13 @@ function login() {
     })
     .catch((error) => alert(error.message));
 }
+auth.signInWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    console.log("Autentificare reușită", userCredential);
+  })
+  .catch((error) => {
+    console.error("Eroare autentificare:", error.message);
+  });
 
 // Logout
 function logout() {
