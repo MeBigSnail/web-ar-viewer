@@ -11,20 +11,6 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
-const db = firebase.firestore(); // ✅ Firestore inițializat corect
-
-
-firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    console.log("Utilizator autentificat:", user);
-    document.getElementById("userEmail").textContent = user.email;
-    document.getElementById("userName").textContent = user.displayName || "Utilizator";
-    document.getElementById("userPhone").textContent = localStorage.getItem("userPhone") || "Nespecificat";
-  } else {
-    console.log("Utilizator neautentificat.");
-  }
-});
-
 
 // Meniu lateral
 function openMenu() {
@@ -55,13 +41,6 @@ function login() {
     })
     .catch((error) => alert(error.message));
 }
-auth.signInWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-    console.log("Autentificare reușită", userCredential);
-  })
-  .catch((error) => {
-    console.error("Eroare autentificare:", error.message);
-  });
 
 // Logout
 function logout() {
@@ -76,7 +55,7 @@ function toggleProfileMenu() {
   if (menu.style.display === 'flex' || menu.style.display === 'block') {
     menu.style.display = 'none';
   } else {
-    const user = auth.currentUser;
+    const user = firebase.auth().currentUser;
     if (user) {
       menu.innerHTML = `<a href="profile.html">My Profile</a><a href="#" onclick="logout()">Log Out</a>`;
     } else {
@@ -106,7 +85,7 @@ function showLogin() {
   document.getElementById('phoneNumber').style.display = 'none';
 }
 
-// Înregistrare
+// Înregistrare nouă
 function register() {
   const email = document.getElementById('loginEmail').value.trim();
   const password = document.getElementById('loginPassword').value.trim();
@@ -133,9 +112,8 @@ function register() {
     .catch((error) => alert(error.message));
 }
 
-// Afișare date profil
+// Afișare date în profil
 auth.onAuthStateChanged((user) => {
-  consol.log("123 test")
   if (document.getElementById("userEmail") && user) {
     document.getElementById("userEmail").textContent = user.email;
     document.getElementById("userName").textContent = user.displayName || "Utilizator";
