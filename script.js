@@ -169,16 +169,24 @@ function removeFromFavorites(productId) {
   const user = auth.currentUser;
   if (user) {
     const favoritesRef = db.collection('favorites').doc(user.uid);
-    favoritesRef.update({
-      products: firebase.firestore.FieldValue.arrayRemove({ id: productId })
-    }).then(() => {
-      alert("Produsul a fost îndepărtat.");
-      loadFavorites();
+    favoritesRef.get().then((doc) => {
+      if (doc.exists) {
+        const currentProducts = doc.data().products || [];
+        const updatedProducts = currentProducts.filter(p => p.id !== productId);
+
+        favoritesRef.set({ products: updatedProducts }, { merge: true }).then(() => {
+          alert("Produsul a fost îndepărtat.");
+          loadFavorites();
+        }).catch((error) => {
+          console.error("Eroare la actualizarea favorite:", error);
+        });
+      }
     }).catch((error) => {
-      console.error("Eroare la ștergerea produsului:", error);
+      console.error("Eroare la accesarea documentului:", error);
     });
   }
 }
+
 function addToFavorites(product) {
   const user = firebase.auth().currentUser;
   if (user) {
@@ -205,7 +213,6 @@ function addToFavorites(product) {
     alert("Trebuie să te autentifici pentru a adăuga la favorite.");
   }
 }
-window.addToFavorites = addToFavorites;
 
 // Când pagina se încarcă
 window.onload = () => {
