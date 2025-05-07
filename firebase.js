@@ -1,24 +1,25 @@
-// firebase.js
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+// firebase.js (pentru Firebase 8.10)
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
 
-// Configurația aplicației tale Firebase
 const firebaseConfig = {
-  apiKey: "API_KEY",
-  authDomain: "PROJECT_ID.firebaseapp.com",
-  projectId: "PROJECT_ID",
-  storageBucket: "PROJECT_ID.appspot.com",
-  messagingSenderId: "SENDER_ID",
-  appId: "APP_ID"
+  apiKey: "AIzaSyDQjt5Vqyp7zs5ppnZasuNHKkGg6DTGFQU",
+  authDomain: "furniturefuture-ed302.firebaseapp.com",
+  projectId: "furniturefuture-ed302",
+  storageBucket: "furniturefuture-ed302.appspot.com",
+  messagingSenderId: "746220689658",
+  appId: "1:746220689658:web:2fc5949203b9de6fb11143",
+  measurementId: "G-GBMPN4YJ7Y"
 };
 
-// Inițializează Firebase
-const app = initializeApp(firebaseConfig);
+// Inițializează Firebase (doar dacă nu a fost deja inițializat)
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
-// Inițializează Firestore și Auth
-const db = getFirestore(app);
-const auth = getAuth(app);
+// Exportă instanțele necesare
+const auth = firebase.auth();
+const db = firebase.firestore();
 
-// Exportă instanțele
-export { db, auth };
+export { firebase, auth, db };
