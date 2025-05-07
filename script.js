@@ -33,6 +33,13 @@ function login() {
   const email = document.getElementById('loginEmail').value;
   const password = document.getElementById('loginPassword').value;
 
+    // Verificare dacă emailul și parola sunt completate
+  console.log("test 123")
+  if (!email || !password) {
+    alert("Emailul și parola sunt obligatorii!");
+    return; // Oprește execuția funcției dacă lipsesc datele
+  }
+
   auth.signInWithEmailAndPassword(email, password)
     .then(() => {
       alert('Logare reușită!');
