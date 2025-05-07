@@ -1,43 +1,41 @@
-// script.js (modular Firebase v9+)
-import { auth, db } from './firebase.js';
-import {
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  signOut,
-  updateProfile
-} from 'firebase/auth';
-import {
-  doc,
-  getDoc,
-  setDoc,
-  updateDoc,
-  arrayUnion,
-  arrayRemove
-} from 'firebase/firestore';
+// Inițializare Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyDQjt5Vqyp7zs5ppnZasuNHKkGg6DTGFQU",
+  authDomain: "furniturefuture-ed302.firebaseapp.com",
+  projectId: "furniturefuture-ed302",
+  storageBucket: "furniturefuture-ed302.appspot.com",
+  messagingSenderId: "746220689658",
+  appId: "1:746220689658:web:2fc5949203b9de6fb11143",
+  measurementId: "G-GBMPN4YJ7Y"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
 
 // Meniu lateral
-export function openMenu() {
+function openMenu() {
   document.getElementById('sideMenu').style.width = '250px';
 }
-export function closeMenu() {
+function closeMenu() {
   document.getElementById('sideMenu').style.width = '0';
 }
 
 // Popup Login
-export function openLoginPopup() {
+function openLoginPopup() {
   document.getElementById('loginPopup').style.display = 'flex';
 }
-export function closeLoginPopup() {
+function closeLoginPopup() {
   document.getElementById('loginPopup').style.display = 'none';
 }
 
 // Login
-export function login() {
+function login() {
   const email = document.getElementById('loginEmail').value;
   const password = document.getElementById('loginPassword').value;
 
-  signInWithEmailAndPassword(auth, email, password)
+  auth.signInWithEmailAndPassword(email, password)
     .then(() => {
       alert('Logare reușită!');
       closeLoginPopup();
@@ -47,14 +45,14 @@ export function login() {
 }
 
 // Logout
-export function logout() {
-  signOut(auth).then(() => {
+function logout() {
+  auth.signOut().then(() => {
     window.location.href = "index.html";
   });
 }
 
 // Meniu profil
-export function toggleProfileMenu() {
+function toggleProfileMenu() {
   const menu = document.getElementById('profileMenu');
   const user = auth.currentUser;
   if (menu.style.display === 'flex' || menu.style.display === 'block') {
@@ -69,26 +67,28 @@ export function toggleProfileMenu() {
   }
 }
 
-// Formulare
-export function showRegister() {
+// Trecere la formular înregistrare
+function showRegister() {
   document.getElementById('popupTitle').innerText = "Înregistrare";
   document.getElementById('loginButton').innerText = "Înregistrează-te";
-  document.getElementById('loginButton').setAttribute("onclick", "register()")
+  document.getElementById('loginButton').setAttribute("onclick", "register()");
   document.getElementById('toggleText').innerHTML = `Ai deja cont? <a href="#" onclick="showLogin()">Logare aici</a>`;
   document.getElementById('displayName').style.display = 'block';
   document.getElementById('phoneNumber').style.display = 'block';
 }
 
-export function showLogin() {
+// Trecere la formular logare
+function showLogin() {
   document.getElementById('popupTitle').innerText = "Autentificare";
   document.getElementById('loginButton').innerText = "Logare";
-  document.getElementById('loginButton').setAttribute("onclick", "login()")
+  document.getElementById('loginButton').setAttribute("onclick", "login()");
   document.getElementById('toggleText').innerHTML = `Nu ai cont? <a href="#" onclick="showRegister()">Înregistrează-te aici</a>`;
   document.getElementById('displayName').style.display = 'none';
   document.getElementById('phoneNumber').style.display = 'none';
 }
 
-export function register() {
+// Înregistrare nouă
+function register() {
   const email = document.getElementById('loginEmail').value.trim();
   const password = document.getElementById('loginPassword').value.trim();
   const displayName = document.getElementById('displayName').value.trim();
@@ -99,10 +99,10 @@ export function register() {
     return;
   }
 
-  createUserWithEmailAndPassword(auth, email, password)
+  auth.createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      return updateProfile(user, {
+      return user.updateProfile({
         displayName: displayName
       }).then(() => {
         localStorage.setItem("userPhone", phone);
@@ -115,7 +115,7 @@ export function register() {
 }
 
 // Afișare date în profil
-onAuthStateChanged(auth, (user) => {
+auth.onAuthStateChanged((user) => {
   if (document.getElementById("userEmail") && user) {
     document.getElementById("userEmail").textContent = user.email;
     document.getElementById("userName").textContent = user.displayName || "Utilizator";
@@ -123,16 +123,18 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// Favorite
-export function loadFavorites() {
+
+                                                  // Încărcare favorite
+function loadFavorites() {
   const user = auth.currentUser;
   if (user) {
-    const favoritesRef = doc(db, 'favorites', user.uid);
+    console.log('Utilizator autentificat, încărcăm favoritele...');
+    const favoritesRef = db.collection('favorites').doc(user.uid);
 
-    getDoc(favoritesRef).then((docSnap) => {
+    favoritesRef.get().then((doc) => {
       const favoritesList = document.getElementById('favoritesList');
-      if (docSnap.exists()) {
-        const products = docSnap.data().products || [];
+      if (doc.exists) {
+        const products = doc.data().products || [];
 
         if (products.length === 0) {
           favoritesList.innerHTML = '<p>Nu ai adăugat niciun produs la favorite.</p>';
@@ -155,17 +157,20 @@ export function loadFavorites() {
       }
     }).catch((error) => {
       console.error('Eroare la încărcarea favorite: ', error);
-      alert("Nu s-au putut încărca favoritele.");
+      alert("Nu s-au putut încărca favoritele. Verifică conexiunea la internet sau setările Firebase.");
     });
+  } else {
+    console.log("Nu ești autentificat, nu se pot încărca favoritele.");
   }
 }
 
-export function removeFromFavorites(productId) {
+// Îndepărtare produs
+function removeFromFavorites(productId) {
   const user = auth.currentUser;
   if (user) {
-    const favoritesRef = doc(db, 'favorites', user.uid);
-    updateDoc(favoritesRef, {
-      products: arrayRemove({ id: productId })
+    const favoritesRef = db.collection('favorites').doc(user.uid);
+    favoritesRef.update({
+      products: firebase.firestore.FieldValue.arrayRemove({ id: productId })
     }).then(() => {
       alert("Produsul a fost îndepărtat.");
       loadFavorites();
@@ -174,18 +179,19 @@ export function removeFromFavorites(productId) {
     });
   }
 }
-
-export function addToFavorites(product) {
-  const user = auth.currentUser;
+function addToFavorites(product) {
+  const user = firebase.auth().currentUser;
   if (user) {
-    const favoritesRef = doc(db, 'favorites', user.uid);
-    getDoc(favoritesRef).then((docSnap) => {
-      let existing = docSnap.exists() && docSnap.data().products ? docSnap.data().products : [];
+    const favoritesRef = firebase.firestore().collection("favorites").doc(user.uid);
+
+    // Adaugă produsul dacă nu există deja
+    favoritesRef.get().then((doc) => {
+      let existing = doc.exists && doc.data().products ? doc.data().products : [];
       const alreadyExists = existing.some(p => p.id === product.id);
 
       if (!alreadyExists) {
-        setDoc(favoritesRef, {
-          products: arrayUnion(product)
+        favoritesRef.set({
+          products: firebase.firestore.FieldValue.arrayUnion(product)
         }, { merge: true }).then(() => {
           alert("Produsul a fost adăugat la favorite!");
         }).catch((error) => {
@@ -199,12 +205,17 @@ export function addToFavorites(product) {
     alert("Trebuie să te autentifici pentru a adăuga la favorite.");
   }
 }
+window.addToFavorites = addToFavorites;
 
+// Când pagina se încarcă
 window.onload = () => {
-  onAuthStateChanged(auth, (user) => {
+  console.log('Încărcăm favoritele...');
+  auth.onAuthStateChanged((user) => {
     if (user) {
+      console.log("Utilizator logat:", user.email);
       loadFavorites();
     } else {
+      console.log("Utilizator neautentificat.");
       const favoritesList = document.getElementById('favoritesList');
       if (favoritesList) {
         favoritesList.innerHTML = `<p>Te rugăm să te autentifici pentru a vizualiza favoritele.</p>`;
