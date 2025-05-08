@@ -147,7 +147,7 @@ function loadFavorites() {
               <img src="${product.image}" alt="${product.name}">
               <h2>${product.name}</h2>
               <a href="product.html?model=${product.id}.glb">Vezi în AR</a>
-              <button onclick="removeFromFavorites('${product.id}')">Îndepărtează din favorite</button>
+              <button class="favorite-btn" onclick="removeFromFavorites('${product.id}')">Îndepărtează din favorite</button>
             `;
             favoritesList.appendChild(card);
           });
