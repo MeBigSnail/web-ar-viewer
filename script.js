@@ -227,3 +227,44 @@ window.onload = () => {
     }
   });
 };
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("searchInput");
+    const productCards = document.querySelectorAll(".product-card");
+
+    searchInput.addEventListener("input", () => {
+      const searchValue = searchInput.value.toLowerCase();
+
+      let found = false;
+
+      productCards.forEach(card => {
+        const altText = card.querySelector("img").alt.toLowerCase();
+
+        if (altText.includes(searchValue)) {
+          card.style.display = "block";
+          found = true;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      // Afișează mesaj dacă nu a fost găsit nimic
+      let noResults = document.getElementById("noResults");
+      if (!noResults) {
+        noResults = document.createElement("p");
+        noResults.id = "noResults";
+        noResults.style.textAlign = "center";
+        noResults.style.marginTop = "20px";
+        noResults.style.display = "none";
+        document.querySelector("main").appendChild(noResults);
+      }
+
+      if (!found) {
+        noResults.textContent = "Niciun produs găsit.";
+        noResults.style.display = "block";
+      } else {
+        noResults.style.display = "none";
+      }
+    });
+ });
