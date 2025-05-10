@@ -29,6 +29,20 @@ function openLoginPopup() {
 function closeLoginPopup() {
   document.getElementById('loginPopup').style.display = 'none';
 }
+////////
+
+const viewer = document.querySelector('model-viewer');
+const progress = viewer.querySelector('.update-bar');
+
+viewer.addEventListener('progress', (event) => {
+  const value = event.detail.totalProgress * 100;
+  progress.style.width = `${value}%`;
+});
+
+viewer.addEventListener('load', () => {
+  console.log("Modelul a fost încărcat!");
+});
+
 
 // Login
 function login() {
