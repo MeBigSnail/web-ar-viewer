@@ -427,3 +427,20 @@ model-viewer {
   background-color: #44527a;
 }
 
+.progress-bar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 4px;
+  background: #ddd;
+  transform: translate(-50%, -50%);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.update-bar {
+  height: 100%;
+  width: 0%;
+  background: #3f51b5;
+  transition: width 0.3s ease;
+}
