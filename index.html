@@ -7,7 +7,18 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
+  <!-- 🔄 Preîncărcare invizibilă a modelelor .glb -->
+  <model-viewer src="models/Chair1.glb" style="display: none;" preload></model-viewer>
+  <model-viewer src="models/Chair2.glb" style="display: none;" preload></model-viewer>
+  <model-viewer src="models/Chair3.glb" style="display: none;" preload></model-viewer>
+  <model-viewer src="models/canape.glb" style="display: none;" preload></model-viewer>
+  <model-viewer src="models/shelves.glb" style="display: none;" preload></model-viewer>
+  <model-viewer src="models/table1.glb" style="display: none;" preload></model-viewer>
+  <model-viewer src="models/table2.glb" style="display: none;" preload></model-viewer>
+  
+  <!-- Import model-viewer -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  
   <!-- Bara de sus -->
   <header class="top-bar">
     <div class="header-left">
